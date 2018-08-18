@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        class="form-control"
+        [ngModel]="user?.name"
+        (ngModelChange)="user.name"
+        required
+        [readonly]="isReadOnly"
+      >
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="form-control"
+        [ngModel]="user?.username"
+        (ngModelChange)="user.username"
+        required
+        [readonly]="isReadOnly"
+      >
+    </div>
+    <div class="form-group">
+      <label for="Email">E-mail</label>
+      <input
+        type="text"
+        name="Email"
+        id="Email"
+        class="form-control"
+        [ngModel]="user?.email"
+        (ngModelChange)="user.email"
+        required
+        [readonly]="isReadOnly"
+      >
+    </div>
+    <div class="form-group">
+      <label for="street">Street</label>
+      <input
+        type="text"
+        name="street"
+        id="street"
+        class="form-control"
+        [ngModel]="user?.address.street"
+        (ngModelChange)="user.address.street"
+        required
+        [readonly]="isReadOnly"
+      >
+    </div>
+    <div class="form-group">
+      <label for="suite">Suite</label>
+      <input
+        type="text"
+        name="suite"
+        id="suite"
+        class="form-control"
+        [ngModel]="user?.address.suite"
+        (ngModelChange)="user.address.suite"
+        required
+        [readonly]="isReadOnly"
+      >
+    </div>
+    <button class="btn btn-primary" *ngIf="isReadOnly"  (click)="isReadOnly = false">Edit</button>
+    <button class="btn btn-primary" *ngIf="!isReadOnly" (click)="onEdit()">Save</button>
+  </form>
+</div>
