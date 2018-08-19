@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from "../../services/users.service";
 import { ActivatedRoute,Router } from "@angular/router";
 import {User} from "../../models/User";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-edit',
@@ -17,7 +18,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     public userService: UsersService,
     public activatedRoute: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -27,13 +29,15 @@ export class UserEditComponent implements OnInit {
     })
   }
 
-  onEdit(){
+  onSave(){
     this.isReadOnly = true;
     const updtUser = Object.assign({},this.user);
     this.userService.updateUser(updtUser).subscribe((response: User) => {
+      this.toastr.success('Data edited!', 'Success!');
       this.router.navigate(['/']);
       console.log(response);
     },error => {
+      this.toastr.success('Something wrong!', 'Error!');
       console.log(error)
     });
   }

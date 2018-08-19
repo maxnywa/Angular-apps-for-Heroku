@@ -1,3 +1,32 @@
-<p>
-  todo-item-edit works!
-</p>
+<div class="container mt-5">
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        class="form-control"
+        [ngModel]="todo?.title"
+        (ngModelChange)="todo.title"
+        required
+        [readonly]="isReadOnly"
+      >
+    </div>
+    <div class="form-group">
+      <label for="completed">Completed</label>
+      <input
+        type="text"
+        name="completed"
+        id="completed"
+        class="form-control"
+        [ngModel]="todo?.completed"
+        (ngModelChange)="todo.completed"
+        required
+        [readonly]="isReadOnly"
+      >
+    </div>
+    <button class="btn btn-primary" *ngIf="isReadOnly"  (click)="isReadOnly = false">Edit</button>
+    <button class="btn btn-primary" *ngIf="!isReadOnly" (click)="onSave()">Save</button>
+  </form>
+</div>

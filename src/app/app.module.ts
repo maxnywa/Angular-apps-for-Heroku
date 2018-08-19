@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,6 +11,9 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { FormsModule } from "@angular/forms";
 import { TodoComponent } from './components/todo/todo.component';
 import { TodoItemEditComponent } from './components/todo-item-edit/todo-item-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { TodoItemEditComponent } from './components/todo-item-edit/todo-item-edi
     BrowserModule,
     RoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

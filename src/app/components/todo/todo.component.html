@@ -1,4 +1,39 @@
 <div class="container">
+  <div class="card card-body mb-5 col-6 mx-auto">
+    <h4 class="card-title">Add new Todo</h4>
+    <div class="card-body">
+      <form #form="ngForm" (ngSubmit)="onAdd(form)">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            class="form-control"
+            [(ngModel)]="newTodo.title"
+            #title = "ngModel"
+            [ngClass]="{'is-invalid': title.errors && form.submitted}"
+            minlength="10"
+            required
+          >
+          <div class="invalid-feedback" [hidden]="!title.errors?.required">Title is required</div>
+          <div class="invalid-feedback" [hidden]="!title.errors?.minlength">Title must be at least 10 chars</div>
+        </div>
+        <div class="form-group">
+          <label for="completed">Completed</label>
+          <input
+            type="checkbox"
+            name="completed"
+            class="checkbox"
+            id="completed"
+            [(ngModel)]="newTodo.completed"
+          >
+        </div>
+        <button class="btn btn-primary" >Add</button>
+      </form>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -6,7 +41,7 @@
         <th>#</th>
         <th>UserId</th>
         <th>Title</th>
-        <th>Compared</th>
+        <th>Completed</th>
         <th></th>
         <th></th>
       </tr>
