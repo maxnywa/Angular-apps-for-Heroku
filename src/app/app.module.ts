@@ -13,7 +13,9 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TodoItemEditComponent } from './components/todo-item-edit/todo-item-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ToastrModule } from 'ngx-toastr';
     NotFoundComponent,
     UserEditComponent,
     TodoComponent,
-    TodoItemEditComponent
+    TodoItemEditComponent,
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

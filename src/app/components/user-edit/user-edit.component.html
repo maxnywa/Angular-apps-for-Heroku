@@ -1,71 +1,67 @@
 <div class="container mt-5">
-  <form>
+  <form [formGroup]="userForm">
     <div class="form-group">
       <label for="name">Name</label>
       <input
         type="text"
-        name="name"
         id="name"
         class="form-control"
-        [ngModel]="user?.name"
-        (ngModelChange)="user.name"
-        required
+        [ngClass]="{'is-invalid': (name.invalid && (name.dirty || name.touched))}"
+        formControlName="name"
         [readonly]="isReadOnly"
       >
+      <div class="invalid-feedback" *ngIf="name.errors?.required">Name is required</div>
     </div>
     <div class="form-group">
       <label for="username">Username</label>
       <input
         type="text"
-        name="username"
         id="username"
         class="form-control"
-        [ngModel]="user?.username"
-        (ngModelChange)="user.username"
-        required
+        formControlName="username"
+        [ngClass]="{'is-invalid': (username.invalid && (username.dirty || username.touched))}"
         [readonly]="isReadOnly"
       >
+      <div class="invalid-feedback" *ngIf="username.errors?.required">Username is required</div>
     </div>
     <div class="form-group">
-      <label for="Email">E-mail</label>
+      <label for="email">E-mail</label>
       <input
         type="text"
-        name="Email"
-        id="Email"
+        id="email"
         class="form-control"
-        [ngModel]="user?.email"
-        (ngModelChange)="user.email"
-        required
+        formControlName="email"
         [readonly]="isReadOnly"
+        [ngClass]="{'is-invalid': (email.invalid && (email.dirty || email.touched))}"
       >
+      <div class="invalid-feedback" *ngIf="email.errors?.required">Email is required</div>
+      <div class="invalid-feedback" *ngIf="email.errors?.email">Invalid email</div>
     </div>
     <div class="form-group">
       <label for="street">Street</label>
       <input
         type="text"
-        name="street"
         id="street"
         class="form-control"
-        [ngModel]="user?.address.street"
-        (ngModelChange)="user.address.street"
-        required
+        formControlName="street"
         [readonly]="isReadOnly"
+        [ngClass]="{'is-invalid': (street.invalid && (street.dirty || street.touched))}"
       >
+      <div class="invalid-feedback" *ngIf="street.errors?.required">Street is required</div>
     </div>
     <div class="form-group">
       <label for="suite">Suite</label>
       <input
         type="text"
-        name="suite"
         id="suite"
         class="form-control"
-        [ngModel]="user?.address.suite"
-        (ngModelChange)="user.address.suite"
-        required
+        formControlName="suite"
         [readonly]="isReadOnly"
+        [ngClass]="{'is-invalid': (suite.invalid && (suite.dirty || suite.touched))}"
       >
+      <div class="invalid-feedback" *ngIf="suite.errors?.required">Suite is required</div>
     </div>
     <button class="btn btn-primary" *ngIf="isReadOnly"  (click)="isReadOnly = false">Edit</button>
-    <button class="btn btn-primary" *ngIf="!isReadOnly" (click)="onSave()">Save</button>
+    <button class="btn btn-primary" *ngIf="!isReadOnly" (click)="onSave()" [disabled]="userForm.invalid">Save</button>
   </form>
 </div>

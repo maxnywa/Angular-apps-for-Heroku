@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="card card-body">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              [ngClass]="{'is-invalid': (email.invalid && (email.dirty || email.touched))}"
+            >
+            <div class="invalid-feedback" *ngIf="email.errors?.required">Title is required</div>
+            <div class="invalid-feedback" *ngIf="email.errors?.email">Please provide a valid email</div>
+          </div>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              formControlName="username"
+              [ngClass]="{'is-invalid': (username.invalid && (username.dirty || username.touched))}"
+            >
+            <div class="invalid-feedback" *ngIf="username.errors?.required">Title is required</div>
+            <div class="invalid-feedback" *ngIf="username.errors?.minlength">Username must be at least 3 chars</div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+              [ngClass]="{'is-invalid': (password.invalid && (password.dirty || password.touched))}"
+            >
+            <div class="invalid-feedback" *ngIf="password.errors?.required">Title is required</div>
+            <div class="invalid-feedback" *ngIf="password.errors?.minlength">Password must be at least 8 chars</div>
+          </div>
+          <div class="d-flex justify-content-around">
+
+            <button class="btn btn-primary" [disabled]="signUpForm.invalid">Sign up</button>
+          </div>
+          <!-- /.form-group -->
+        </form>
+
+      </div>
+      <!-- /.card card-body -->
+    </div>
+    <!-- /.col-6 -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
