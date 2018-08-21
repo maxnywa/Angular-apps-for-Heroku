@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <form [formGroup]="userForm">
+  <form *ngIf="user" [formGroup]="userForm">
     <div class="form-group">
       <label for="name">Name</label>
       <input

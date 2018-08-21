@@ -1,7 +1,7 @@
-<nav class="navbar navbar-dark bg-primary mb-3 d-flex justify-content-start">
+<nav class="navbar navbar-dark bg-primary mb-3">
   <a class="navbar-brand mr-auto" href="#">{{brand}}</a>
   <div class="collapse show">
-    <ul class="navbar-nav flex-row">
+    <ul class="navbar-nav flex-row" *ngIf="showLinks">
       <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <a routerLink="/" class="nav-link">Home</a>
       </li>
@@ -11,7 +11,11 @@
       <li class="nav-item ml-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
         <a routerLink="/todo" class="nav-link">Todos List</a>
       </li>
+      <li class="nav-item ml-3">
+        <button class="btn btn-danger ml-auto" (click)="onLogout()">Logout</button>
+      </li>
     </ul>
+
   </div>
 </nav>
 

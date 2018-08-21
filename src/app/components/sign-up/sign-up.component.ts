@@ -31,9 +31,12 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(){
     this.auth.signUp(this.signUpForm.value.email,this.signUpForm.value.username, this.signUpForm.value.password,).subscribe((res:boolean)=>{
-      if(res) this.router.navigate(['login']);
-      this.toastr.success('New user added! Please login ','Success')
-      this.signUpForm.reset();
+      if(res) {
+        this.router.navigate(['/']);
+        this.auth.emitEditEvent('true');
+        this.toastr.success('New user added! Welcome ','Success')
+        this.signUpForm.reset();
+      }
     }, ({error, status}) => {
       this.toastr.error(`${status}:${error}`,'Error')
     });

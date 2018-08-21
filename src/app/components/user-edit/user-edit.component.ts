@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import { UsersService } from "../../services/users.service";
 import { ActivatedRoute,Router } from "@angular/router";
 import {User} from "../../models/User";
 import { ToastrService } from 'ngx-toastr';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators, FormBuilder} from "@angular/forms";
+
 
 @Component({
   selector: 'app-user-edit',
@@ -16,35 +17,32 @@ export class UserEditComponent implements OnInit {
   isReadOnly = true;
   userForm: FormGroup;
 
-
   constructor(
     public userService: UsersService,
     public activatedRoute: ActivatedRoute,
     public router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.params['id'];
     this.userService.getUser(this.userId).subscribe((user:User) =>{
       this.user = user;
-
-      this.userForm = new FormGroup({
-        name: new FormControl(`${user.name}`,[Validators.required, Validators.minLength(8)]),
-        username: new FormControl(`${user.username}`,[Validators.required]),
-        email: new FormControl(`${user.email}`,[Validators.required, Validators.email]),
-        street: new FormControl(`${user.address.street}`,[Validators.required]),
-        suite: new FormControl(`${user.address.suite}`,[Validators.required]),
-      });
+      this.initForm();
+    })
+  }
+  initForm(){
+    this.userForm = this.fb.group({
+      name: [`${this.user.name}`,[Validators.required, Validators.minLength(8)]],
+      username: [`${this.user.username}`,[Validators.required]],
+      email: [`${this.user.email}`,[Validators.required, Validators.email]],
+      street: [`${this.user.address.street}`,[Validators.required]],
+      suite: [`${this.user.address.suite}`,[Validators.required]],
     })
 
+  };
 
-
-  }
-  onBlur(input_name){
-    if (this.userForm.get(`${input_name}`).invalid
-      && (this.userForm.get(`${input_name}`).dirty || this.userForm.get(`${input_name}`).touched)) return true;
-  }
   get name() { return this.userForm.get('name'); }
   get username() { return this.userForm.get('username'); }
   get email() { return this.userForm.get('email'); }
@@ -53,13 +51,15 @@ export class UserEditComponent implements OnInit {
 
   onSave(){
     this.isReadOnly = true;
-    const updtUser = Object.assign({},this.user);
+    let updtUser = Object.assign({},this.user);
+    updtUser = Object.assign(updtUser, this.userForm.value);
+
     this.userService.updateUser(updtUser).subscribe((response: User) => {
       this.toastr.success('Data edited!', 'Success!');
       this.router.navigate(['/']);
-      console.log(response);
+
     },error => {
-      this.toastr.success('Something wrong!', 'Error!');
+      this.toastr.error('Something wrong!', 'Error!');
       console.log(error)
     });
   }
