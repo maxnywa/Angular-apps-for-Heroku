@@ -10,7 +10,10 @@ import {User} from "../../models/User";
 })
 export class HomeComponent implements OnInit {
   users: User[];
-
+  num: number[] = [1, 5, 4];
+  timestamp = new Date();
+  styles = {'background':'lightblue', 'text-transform':'uppercase'};
+  condition = {'btn-primary': true};
   constructor(
     public userService: UsersService,
   ) { }
@@ -19,6 +22,14 @@ export class HomeComponent implements OnInit {
     this.userService.getUsers().subscribe((data:User[])=>{
       this.users = data;
     });
+
+    setTimeout(()=>{
+      this.num.push(15);
+    },3000);
+
+
   }
+
+
 
 }

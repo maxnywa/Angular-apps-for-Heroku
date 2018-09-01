@@ -16,6 +16,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { MySlicePipe } from "./components/pipes/my-slice.pipe";
+import { JoinPipe } from "./components/pipes/join.pipe";
+import { BgDirective } from './directives/bg.directive';
+import { MyIfDirective } from './directives/my-if.directive';
+import { SumPipe } from "./components/pipes/sum.pipe";
+import { TimeExpressPipe } from "./components/pipes/timeExpress.pipe";
+import { MyNgStyleDirective } from './directives/my-ngStyle.directive';
+import { BoldDirective } from './directives/bold.directive';
+import { MyClassDirective } from './directives/my-class.directive';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +38,16 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     TodoComponent,
     TodoItemEditComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    MySlicePipe,
+    JoinPipe,
+    BgDirective,
+    MyIfDirective,
+    SumPipe,
+    TimeExpressPipe,
+    MyNgStyleDirective,
+    BoldDirective,
+    MyClassDirective
   ],
   imports: [
     BrowserModule,
@@ -38,7 +57,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     BrowserAnimationsModule,
     ToastrModule,
     ToastrModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

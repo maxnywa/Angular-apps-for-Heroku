@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="alert alert-info">{{num | sum}}</div>
+  <p>Today is {{ timestamp | timeExpr: 'en-GB' }}</p>
+  <div class="alert alert-info" *myIf="users?.length"></div>
   <div class="table-responsive" >
     <table class="table">
       <thead>
@@ -14,14 +17,13 @@
       </thead>
       <tbody>
       <tr *ngFor="let user of users; let i = index">
-        <td>{{i + 1}}</td>
-        <td>{{user.name}}</td>
+        <td [bold]="'bold'">{{i + 1}}</td>
+        <td [myNgStyle]="styles">{{user.name }}</td>
         <td>{{user.email}}</td>
         <td>{{user.phone}}</td>
         <td>{{user.company.name}}</td>
         <td><button class="btn btn-danger">Delete</button></td>
-        <td><button routerLink="/user/{{user.id}}" class="btn btn-primary">Edit</button></td>
-
+        <td><button routerLink="/user/{{user.id}}" class="btn" [myClass]="condition">Edit</button></td>
       </tr>
       </tbody>
     </table>
