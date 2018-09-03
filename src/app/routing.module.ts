@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule,Routes } from "@angular/router";
-import { HomeComponent } from "./components/home/home.component";
-import  { AboutComponent } from "./components/about/about.component";
+import { AboutComponent } from "./components/about/about.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
-import {UserEditComponent} from "./components/user-edit/user-edit.component";
-import {TodoComponent} from "./components/todo/todo.component";
-import {TodoItemEditComponent} from "./components/todo-item-edit/todo-item-edit.component";
-import { LoginComponent } from "./components/login/login.component";
+import { TodoComponent } from "./modules/todo/components/todo/todo.component";
 import { AuthGuard } from "./guards/auth.guard";
-import { SignUpComponent } from "./components/sign-up/sign-up.component";
+
+import { homeRoutes } from "./modules/home-module/home-routing";
+import { authRoutes } from "./modules/auth/auth-routing"
+import { todoRoutes } from "./modules/todo/todo-routing";
+import { userRoutes } from "./modules/user/user-routing";
+import {LoginComponent} from "./modules/auth/components/login/login.component";
+import {SignUpComponent} from "./modules/auth/components/sign-up/sign-up.component";
+
+
 
 const routes:Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent },
-  { path:'', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', children: [{path: '', component: LoginComponent}] },
+  { path: 'signUp', children: [{path: 'signUp', component: SignUpComponent}] },
+  { path: '', children: [...homeRoutes], canActivate: [AuthGuard] },
   { path:'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path:'todo', component: TodoComponent, canActivate: [AuthGuard] },
-  { path:'user/:id',component: UserEditComponent, canActivate: [AuthGuard] },
-  { path:'todo/:id',component: TodoItemEditComponent, canActivate: [AuthGuard] },
+  { path:'todo/:id',children: [...todoRoutes], canActivate: [AuthGuard] },
+  { path:'user/:id',children: [...userRoutes], canActivate: [AuthGuard] },
   { path:'**', component: NotFoundComponent }
 ];
 

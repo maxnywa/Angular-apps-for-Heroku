@@ -12,6 +12,7 @@
               formControlName="email"
               [ngClass]="{'is-invalid': (email.invalid && (email.dirty || email.touched))}">
             <div class="invalid-feedback" *ngIf="email.errors?.email" >Please provide a valid email</div>
+            <div class="invalid-feedback" *ngIf="email.errors?.required">Email is required</div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -22,7 +23,7 @@
               formControlName="password"
               [ngClass]="{'is-invalid': (password.invalid && (password.dirty || password.touched))}"
             >
-            <div class="invalid-feedback" *ngIf="password.errors?.required">Title is required</div>
+            <div class="invalid-feedback" *ngIf="password.errors?.required">Password is required</div>
             <div class="invalid-feedback" *ngIf="password.errors?.minlength">Password must be at least 8 chars</div>
           </div>
           <div class="d-flex justify-content-around">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from "@angular/router";
-import { TodoService } from "../../services/todo.service";
-import { TodoItem } from "../../models/TodoItem";
+import { TodoService } from "../../../../services/todo.service";
+import { TodoItem } from "../../../../models/TodoItem";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

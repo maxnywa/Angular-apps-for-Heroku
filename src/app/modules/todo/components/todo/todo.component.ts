@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from "../../services/todo.service";
+import { TodoService } from "../../../../services/todo.service";
 import { ActivatedRoute,Router } from "@angular/router";
 import { FormGroup, FormControl,Validators } from "@angular/forms";
-import { TodoItem } from "../../models/TodoItem";
+import { TodoItem } from "../../../../models/TodoItem";
 import { ToastrService } from 'ngx-toastr';
+import {User} from "../../../home-module/models/User";
 
 @Component({
   selector: 'app-todo',
@@ -48,6 +49,11 @@ export class TodoComponent implements OnInit {
 
     this.todoForm.reset();
 
+  }
+  onDelete(id: number){
+    this.todos.forEach((todo:TodoItem , index)=>{
+      if(todo.id === id ) this.todos.splice(index,1)
+    } )
   }
 
 }

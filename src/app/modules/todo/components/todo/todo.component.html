@@ -44,12 +44,11 @@
         <td>{{todo.userId}}</td>
         <td>{{todo.title}}</td>
         <td>{{todo.completed}}</td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td><button class="btn btn-danger" (click)="onDelete(todo.id)">Delete</button></td>
         <td><button routerLink="/todo/{{todo.id}}" class="btn btn-primary">Edit</button></td>
       </tr>
       </tbody>
     </table>
-
   </div>
 </div>
 <!-- /.container-->

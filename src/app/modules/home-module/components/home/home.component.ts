@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from "../../services/users.service";
-import {User} from "../../models/User";
+import { UsersService } from "../../../../services/users.service";
+import { User } from "../../models/User";
 
 
 @Component({
@@ -22,14 +22,15 @@ export class HomeComponent implements OnInit {
     this.userService.getUsers().subscribe((data:User[])=>{
       this.users = data;
     });
-
     setTimeout(()=>{
       this.num.push(15);
     },3000);
-
-
   }
 
-
+  onDelete(id: number){
+    this.users.forEach((user:User , index)=>{
+      if(user.id === id ) this.users.splice(index,1)
+    } )
+ }
 
 }
