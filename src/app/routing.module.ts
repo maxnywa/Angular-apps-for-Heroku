@@ -16,10 +16,8 @@ import {SignUpComponent} from "./modules/auth/components/sign-up/sign-up.compone
 
 
 const routes:Routes = [
-  { path: 'login', children: [{path: '', component: LoginComponent}] },
-  { path: 'signUp', children: [{path: 'signUp', component: SignUpComponent}] },
+  { path: 'auth', children: [...authRoutes] },
   { path: '', children: [...homeRoutes], canActivate: [AuthGuard] },
-  { path:'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path:'todo', component: TodoComponent, canActivate: [AuthGuard] },
   { path:'todo/:id',children: [...todoRoutes], canActivate: [AuthGuard] },
   { path:'user/:id',children: [...userRoutes], canActivate: [AuthGuard] },

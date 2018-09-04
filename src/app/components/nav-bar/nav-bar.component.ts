@@ -23,7 +23,7 @@ export class NavBarComponent implements OnInit {
 
   onLogout(){
     this.auth.logout().subscribe((status:boolean)=>{
-      if(status)this.router.navigate(['/login'])
+      if(status)this.router.navigate(['auth/login'])
     },error => {
       console.log(error.status)
     })

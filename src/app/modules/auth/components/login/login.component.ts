@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     });
   }
   onSignUp(){
-    this.router.navigate(['signup'])
+    this.router.navigate(['auth/signup'])
   }
 
 }
